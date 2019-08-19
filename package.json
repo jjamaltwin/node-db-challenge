@@ -1,0 +1,28 @@
+{
+  "name": "db-challenge",
+  "version": "1.0.0",
+  "description": "Node Sprint Challenge",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.19.2",
+    "nodemon": "^1.19.1",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjamaltwin/node-db-challenge"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjamaltwin/node-db-challenge/issues"
+  },
+  "homepage": "https://github.com/jjamaltwin/node-db-challenge#readme"
+}
