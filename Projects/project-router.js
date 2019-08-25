@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const projects = require('./project-model');
 
-
+// PROJECT
 
 router.get('/', (req, res) => {
     projects.find()
@@ -40,6 +40,9 @@ router.post('/', (req, res) => {
     })
 })
 
+
+/// TASK 
+
 router.post('/:id/task', (req, res) => {
     const task = {
         project_id: req.params.id,
@@ -68,20 +71,35 @@ router.get('/:id/task', (req, res) => {
 
 })
 
+//RESOURCE
+
 
 router.post('/:id/resource', (req, res) => {
-    const tresource = {
+    const resource = {
         project_id: req.params.id,
         ...req.body
     }
-    projects.addTResource(resource)
+    projects.addResource(resource)
         .then(resource => {
             res.status(201).json(resource)
         })
         .catch(error => {
+            console.log(error)
             res.status(500).json(error)
         })
 
+})
+
+router.get("/:id/resource", (req, res) => {
+    const {id} = req.params;
+    projects.getProjectResource(id)
+        .then(resource => {
+            res.status(200).json(resource)
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(500).json(error)
+        })
 })
 
 

@@ -23,10 +23,13 @@ exports.up = function(knex, Promise) {
     .createTable("resource", tbl => {
       tbl.increments()
       tbl.string('name').notNullable().unique()
-      tbl.string("description")
-      tbl.boolean("completed").notNullable() 
       tbl
-        
+      .integer("project_id")
+      .notNullable()
+      .unsigned()
+      .references("id")
+      .inTable("projects");
+      
     })
 
     // Many to Many

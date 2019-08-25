@@ -51,14 +51,31 @@ const addTask = (task) => {
             })
         }
 
+const addResource = (resource) => {
+    return db('resource')
+            .insert(resource, 'id')
+            .then(resource => {
+                const resourceID  = resource[0];
+                return resourceID;
+            })
+        }
 
 
+const getProjectResource = (projectId) => {
+            return db('resource')
+            .where({ project_id: projectId })
+            // .then(actions => {
+            //     return actions;
+            // });
+        }      
 
         module.exports = {
             find,
             findById,
             addProject,
             addTask,
-            getProjectTask
+            getProjectTask,
+            addResource,
+            getProjectResource
         }
         
