@@ -10,18 +10,20 @@ router.get('/', (req, res) => {
         res.status(200).json(projects)
     })
     .catch(error => {
+        console.log(error)
         res.status(500).json(error)
     })
 })
 
-router.get('/projects/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const { id } = req.params;
-    
+    console.log(id)
     projects.findById(id)
     .then(project => {
         res.status(200).json(project)
     })
     .catch(error => {
+        console.log(error)
         res.status(500).json(error)
     })
 })
@@ -38,19 +40,50 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/:id/actions', (req, res) => {
-    const action = {
+router.post('/:id/task', (req, res) => {
+    const task = {
         project_id: req.params.id,
         ...req.body
     }
-    projects.addAction(action)
-        .then(action => {
-            res.status(201).json(action)
+    projects.addTask(task)
+        .then(task => {
+            res.status(201).json(task)
         })
         .catch(error => {
             res.status(500).json(error)
         })
 
 })
+
+router.get('/:id/task', (req, res) => {
+    const { id } = req.params;
+    projects.getProjectTask(id)
+        .then(task => {
+            res.status(200).json(task)
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(500).json(error)
+        })
+
+})
+
+
+router.post('/:id/resource', (req, res) => {
+    const tresource = {
+        project_id: req.params.id,
+        ...req.body
+    }
+    projects.addTResource(resource)
+        .then(resource => {
+            res.status(201).json(resource)
+        })
+        .catch(error => {
+            res.status(500).json(error)
+        })
+
+})
+
+
 
 module.exports = router;

@@ -4,31 +4,33 @@ const db = require('../Data/dbConfig');
 
 
 const find = () => {
+    console.log("hello");
     return db('projects');
 }
 
-const getProjectActions = (projectId) => {
-    return db('actions')
+const getProjectTask = (projectId) => {
+    return db('task')
     .where({ project_id: projectId })
-    .then(actions => {
-        return actions;
-    });
+    // .then(actions => {
+    //     return actions;
+    // });
 }
 
 const findById = (id) => {
+    console.log("findById")
     return db('projects')
     .where({ id })
     .first()
-    .then(project => {
-        if(project) {
-            return getProjectActions(id).then(actions => {
-                project.actions = actions;
-                return project;
-            })
-        } else {
-            return null;
-        }
-    })
+    // .then(project => {
+    //     if(project) {
+    //         return getProjectTask(id).then(actions => {
+    //             project.actions = actions;
+    //             return project;
+    //         })
+    //     } else {
+    //         return null;
+    //     }
+    // })
 
 }
 
@@ -40,12 +42,12 @@ const addProject = (project) => {
     })
 }
 
-const addAction = (action) => {
-    return db('actions')
-            .insert(action, 'id')
-            .then(action => {
-                const actionID = action[0];
-                return actionID;
+const addTask = (task) => {
+    return db('task')
+            .insert(task, 'id')
+            .then(task => {
+                const taskID  = task[0];
+                return taskID;
             })
         }
 
@@ -56,6 +58,7 @@ const addAction = (action) => {
             find,
             findById,
             addProject,
-            addAction
+            addTask,
+            getProjectTask
         }
         

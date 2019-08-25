@@ -7,9 +7,9 @@ exports.seed = function(knex) {
           {id: 1, description: 'New Resource', notes: '......', complete: false, project_id: 1},
           {id: 2, description: 'New Resource', notes: '.....', complete: false, project_id: 1},
           {id: 3, description: 'New Resource', notes: '.......', complete: false, project_id: 1},
-          {id: 4, description: 'New Resource', notes: '.........', complete: true, project_id: 2},
-          {id: 5, description: 'New Resource', notes: '.........', complete: true, project_id: 2},
-          {id: 6, description: 'New Resource', notes: '........', complete: true, project_id: 2}
+          {id: 4, description: 'New Resource', notes: '.........', complete: false, project_id: 2},
+          {id: 5, description: 'New Resource', notes: '.........', complete: false, project_id: 2},
+          {id: 6, description: 'New Resource', notes: '........', complete: false, project_id: 2}
         ]);
       });
   };
