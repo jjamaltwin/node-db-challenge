@@ -8,10 +8,11 @@ exports.up = function(knex, Promise) {
   })
 
     .createTable("task", tbl => {
+      0=false
       tbl.increments()
       tbl.string('notes')
       tbl.string("description").notNullable()
-      tbl.boolean("completed").notNullable().default(false) 
+      tbl.boolean ("completed").defaultTo()
       tbl
         .integer("project_id")
         .notNullable()
