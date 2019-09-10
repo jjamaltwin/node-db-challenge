@@ -2,17 +2,16 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("projects", tbl => {
     tbl.increments()
     tbl.string("project_name").notNullable() .unique()
-    
     tbl.string("description")
-    tbl.boolean("completed").notNullable().default(false);
+    tbl.integer("completed").notNullable().defaultTo(0);
   })
 
     .createTable("task", tbl => {
-      0=false
+      
       tbl.increments()
       tbl.string('notes')
       tbl.string("description").notNullable()
-      tbl.boolean ("completed").defaultTo()
+      tbl.integer("completed").defaultTo(0).notNullable()
       tbl
         .integer("project_id")
         .notNullable()
@@ -23,13 +22,7 @@ exports.up = function(knex, Promise) {
 
     .createTable("resource", tbl => {
       tbl.increments()
-      tbl.string('name').notNullable().unique()
-      tbl
-      .integer("project_id")
-      .notNullable()
-      .unsigned()
-      .references("id")
-      .inTable("projects");
+      tbl.string('name').notNullable().unique();
       
     })
 
@@ -54,7 +47,9 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTableIfExists("projects")
+    .dropTableIfExists("project_resource")
+    .dropTableIfExists("resource")
     .dropTableIfExists("task")
-    .dropTableIfExists("resource");
+    .dropTableIfExists("projects");
+    
 };
